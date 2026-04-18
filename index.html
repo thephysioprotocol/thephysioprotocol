@@ -3,149 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
-    <meta property="og:title" content="The Physio Protocol | Premium Wellness & Rehab">
-    <meta property="og:description" content="Elite in-person and virtual physiotherapy, fitness, and nutrition.">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1000&auto=format">
-    <meta property="og:type" content="website">
-
     <title>The Physio Protocol</title>
     <style>
         :root {
             --primary: #1b4332;
             --accent: #f5a623;
-            --bg: #fcfdfb; /* Posh off-white */
-            --text: #2d2d2d;
+            --cream: #fcfdfb;
+            --ease: cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
         body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background-color: var(--bg); 
-            color: var(--text); 
+            font-family: 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--cream); 
+            color: #2d2d2d; 
             margin: 0; padding: 0;
-            line-height: 1.7;
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        .container { width: 90%; max-width: 1100px; margin: auto; padding: 80px 0; }
-        
-        /* High-End Entrance Animation */
+        /* Luxury Fade-In Animation */
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+            transform: translateY(40px) scale(0.98);
+            transition: opacity 1.2s var(--ease), transform 1.2s var(--ease);
+            will-change: transform, opacity;
         }
-        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Hero Section */
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        /* Hero - Solid & Premium */
         .hero {
-            height: 90vh;
+            height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+            background: linear-gradient(rgba(27, 67, 50, 0.82), rgba(27, 67, 50, 0.82)), 
+                        url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1600&auto=format') center/cover no-repeat;
+            color: #fff;
             padding: 20px;
-            background: linear-gradient(rgba(27, 67, 50, 0.88), rgba(27, 67, 50, 0.88)), 
-                        url('https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1200&auto=format') center/cover no-repeat;
-            color: #ffffff;
-        }
-        .hero-content h1 { 
-            font-size: 3em; 
-            margin-bottom: 20px; 
-            letter-spacing: 4px; 
-            text-transform: uppercase; 
-            font-weight: 700;
-            animation: fadeInDown 1.5s ease;
-        }
-        .hero-content p { 
-            font-size: 1.25em; 
-            max-width: 750px; 
-            margin: 0 auto; 
-            opacity: 0.95; 
-            font-weight: 300; 
-            letter-spacing: 0.8px;
-            animation: fadeInUp 1.5s ease 0.3s backwards;
         }
 
-        /* Service Cards */
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin: 0;
+            animation: heroFade 1.5s var(--ease);
+        }
+
+        .hero-content p {
+            font-size: 1.15rem;
+            max-width: 700px;
+            margin: 25px auto;
+            font-weight: 300;
+            letter-spacing: 1px;
+            animation: heroFade 1.5s var(--ease) 0.3s backwards;
+        }
+
+        @keyframes heroFade {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .container { width: 92%; max-width: 1200px; margin: auto; padding: 100px 0; }
+
         .services-wrapper {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 50px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 40px;
         }
+
         .service-card {
             background: #fff;
-            border-radius: 20px;
+            border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 15px 45px rgba(0,0,0,0.04);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.04);
+            transition: transform 0.4s ease;
         }
-        .service-card:hover { transform: translateY(-10px); box-shadow: 0 25px 60px rgba(0,0,0,0.08); }
-        
-        /* Clinical Collage Grid */
+
+        /* Fixed Aspect Ratio - No Jumping */
+        .img-box {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            background: #f0f0f0;
+            overflow: hidden;
+        }
+
         .collage-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            grid-template-rows: 150px 150px;
-            gap: 3px;
-            background: #fff;
-            min-height: 300px; /* Reserves space to prevent "jumping" */
+            grid-template-rows: 1fr 1fr;
+            gap: 2px;
+            height: 100%;
         }
-        .collage-grid img { width: 100%; height: 100%; object-fit: cover; }
-        .card-img { width: 100%; height: 303px; object-fit: cover; }
+
+        .collage-grid img, .card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1s ease;
+        }
+
+        .service-card:hover .collage-grid img, 
+        .service-card:hover .card-img { transform: scale(1.05); }
 
         .card-content { padding: 40px 30px; }
         .card-content h3 { 
-            margin: 0 0 20px; 
-            font-size: 1.7em; 
+            font-size: 1.7rem; 
             color: var(--primary); 
-            letter-spacing: 1px;
-            border-bottom: 1px solid #f0f0f0;
+            margin-bottom: 20px; 
+            font-weight: 600;
+            border-bottom: 1px solid #f2f2f2;
             padding-bottom: 15px;
         }
-        .card-content ul { padding: 0; list-style: none; margin: 0; }
-        .card-content li { margin-bottom: 15px; padding-left: 25px; position: relative; font-size: 1.05em; color: #555; }
-        .card-content li::before { content: "•"; color: var(--accent); position: absolute; left: 0; font-weight: bold; font-size: 1.5em; top: -5px; }
 
-        /* Posh Footer & Call to Action */
-        .footer { background: var(--primary); color: #fff; text-align: center; padding: 120px 20px; }
-        .footer h2 { font-size: 2.4em; margin-bottom: 20px; font-weight: 600; }
-        .footer p { opacity: 0.85; max-width: 600px; margin: 0 auto 50px; font-size: 1.1em; font-weight: 300; }
-        
-        .btn-group { display: flex; flex-direction: column; gap: 20px; max-width: 380px; margin: 0 auto; }
-        
+        .card-content ul { padding: 0; list-style: none; }
+        .card-content li { 
+            margin-bottom: 12px; 
+            padding-left: 20px; 
+            position: relative; 
+            color: #4a4a4a;
+        }
+        .card-content li::before { 
+            content: "•"; 
+            color: var(--accent); 
+            position: absolute; left: 0; 
+            font-weight: bold;
+        }
+
+        /* Contact Section */
+        .footer { 
+            background: var(--primary); 
+            color: #fff; 
+            text-align: center; 
+            padding: 120px 20px;
+        }
+
+        .btn-group { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 15px; 
+            max-width: 360px; 
+            margin: 40px auto 0; 
+        }
+
         .btn {
-            display: block;
-            background: var(--accent); color: #fff; padding: 22px;
-            text-decoration: none; border-radius: 60px; font-weight: 700;
-            text-transform: uppercase; font-size: 0.9em; letter-spacing: 2px;
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 25px rgba(245, 166, 35, 0.3);
+            padding: 22px;
+            border-radius: 60px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            transition: all 0.3s var(--ease);
         }
-        
-        /* The "Call Us" Specialist Pulse Animation */
-        .btn-call {
-            animation: pulse-gold 3s infinite;
-        }
-        
-        .btn-whatsapp { background: #25D366; box-shadow: 0 10px 25px rgba(37, 211, 102, 0.2); }
-        .btn:active { transform: scale(0.96); }
 
-        @keyframes pulse-gold {
-            0% { box-shadow: 0 0 0 0 rgba(245, 166, 35, 0.7); }
+        .btn-call {
+            background: var(--accent);
+            color: #fff;
+            box-shadow: 0 10px 30px rgba(245, 166, 35, 0.3);
+            animation: pulse-ring 3s infinite;
+        }
+
+        .btn-whatsapp { background: #25D366; color: #fff; }
+        .btn-email { background: transparent; border: 1px solid rgba(255,255,255,0.4); color: #fff; }
+
+        @keyframes pulse-ring {
+            0% { box-shadow: 0 0 0 0 rgba(245, 166, 35, 0.6); }
             70% { box-shadow: 0 0 0 15px rgba(245, 166, 35, 0); }
             100% { box-shadow: 0 0 0 0 rgba(245, 166, 35, 0); }
         }
-        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
 
         @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2.2em; }
-            .hero-content p { font-size: 1.1em; }
-            .container { padding: 50px 0; }
+            .hero-content h1 { font-size: 2.1rem; }
+            .container { padding: 60px 0; }
         }
     </style>
 </head>
@@ -154,48 +191,54 @@
     <section class="hero">
         <div class="hero-content">
             <h1>The Physio Protocol</h1>
-            <p>Comprehensive, elite professional services designed seamlessly around your lifestyle and health goals. We proudly offer bespoke care through <strong>exclusive in-person sessions</strong> as well as <strong>fully integrated online virtual services</strong>.</p>
+            <p>Elite professional services designed around your lifestyle. Exclusive in-person sessions and integrated virtual care for your peak potential.</p>
         </div>
     </section>
 
     <div class="container">
         <div class="services-wrapper">
             <div class="service-card reveal">
-                <div class="collage-grid">
-                    <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?q=80&w=400&auto=format" alt="Physiotherapy Assessment">
-                    <img src="https://images.unsplash.com/photo-1620916297397-a4a5402a3c6c?q=80&w=400&auto=format" alt="Clinical Dry Needling">
-                    <img src="https://images.unsplash.com/photo-1612277795421-9bc7706a4a34?q=80&w=400&auto=format" alt="Therapeutic Ultrasound">
-                    <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=400&auto=format" alt="Advanced Electrotherapy">
+                <div class="img-box">
+                    <div class="collage-grid">
+                        <img src="https://images.unsplash.com/photo-1579126038823-93663a832367?auto=format&fit=crop&w=500&q=80" alt="Clinical Ultrasound">
+                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=500&q=80" alt="TENS Electrotherapy">
+                        <img src="https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?auto=format&fit=crop&w=500&q=80" alt="Kinesio Taping">
+                        <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=500&q=80" alt="Dry Needling">
+                    </div>
                 </div>
                 <div class="card-content">
                     <h3>Physiotherapy & Rehab</h3>
                     <ul>
                         <li>Post-Operative Rehabilitation</li>
                         <li>Sports Injury Management</li>
-                        <li>Diagnostic Clinical Ultrasound</li>
+                        <li>Clinical Ultrasound & TENS</li>
                         <li>Dry Needling & Cupping</li>
-                        <li>Advanced TENS & Electrotherapy</li>
-                        <li>Virtual Specialist Consultation</li>
+                        <li>Kinesio Taping Support</li>
+                        <li>Virtual Specialist Consultations</li>
                     </ul>
                 </div>
             </div>
 
             <div class="service-card reveal">
-                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=600&auto=format" class="card-img" alt="High-Performance Training">
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800" class="card-img" alt="Fitness Training">
+                </div>
                 <div class="card-content">
                     <h3>Elite Fitness Training</h3>
                     <ul>
                         <li>Strength & Conditioning</li>
-                        <li>Functional Mobility Training</li>
+                        <li>Functional Mobility</li>
                         <li>Hypertrophy & Muscle Building</li>
-                        <li>Animal Flow & Yoga Integration</li>
-                        <li>Bespoke Virtual Coaching</li>
+                        <li>Animal Flow & Yoga</li>
+                        <li>Personalized Online Coaching</li>
                     </ul>
                 </div>
             </div>
 
             <div class="service-card reveal">
-                <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=600&auto=format" class="card-img" alt="Clinical Nutrition">
+                <div class="img-box">
+                    <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=800" class="card-img" alt="Clinical Nutrition">
+                </div>
                 <div class="card-content">
                     <h3>Clinical Nutrition</h3>
                     <ul>
@@ -203,7 +246,7 @@
                         <li>Hormonal & Metabolic Support</li>
                         <li>Anti-Inflammatory Protocols</li>
                         <li>Gut Health Optimization</li>
-                        <li>Custom Virtual Meal Planning</li>
+                        <li>Global Virtual Meal Planning</li>
                     </ul>
                 </div>
             </div>
@@ -211,35 +254,32 @@
     </div>
 
     <div class="footer reveal">
-        <div class="container" style="padding:0;">
-            <h2>Begin Your Wellness Journey</h2>
-            <p>Contact our team today to schedule your private in-person or virtual consultation.</p>
-            
-            <div class="btn-group">
-                <a href="tel:+917981010248" class="btn btn-call">Speak with Us</a>
-                
-                <a href="https://wa.me/917981010248" class="btn btn-whatsapp">Message on WhatsApp</a>
-            </div>
+        <h2>Start Your Protocol</h2>
+        <p>Contact our team for a private consultation regarding our premium in-person or virtual services.</p>
+        <div class="btn-group">
+            <a href="tel:+917981010248" class="btn btn-call">Speak with Us</a>
+            <a href="https://wa.me/917981010248" class="btn btn-whatsapp">Message on WhatsApp</a>
+            <a href="mailto:thephysioprotocol@gmail.com?subject=New%20Inquiry&body=Name:%0APhone:%0AService%20Interested%20in:%0AGoals:" class="btn btn-email">Inquiry via Email</a>
         </div>
     </div>
 
     <script>
-        // High-end staggered scroll reveal logic
-        function reveal() {
-            var reveals = document.querySelectorAll(".reveal");
-            for (var i = 0; i < reveals.length; i++) {
-                var windowHeight = window.innerHeight;
-                var elementTop = reveals[i].getBoundingClientRect().top;
-                var elementVisible = 100;
-                if (elementTop < windowHeight - elementVisible) {
-                    reveals[i].classList.add("active");
+        // Elite Staggered Reveal Logic
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    // Staggering the start time for each card
+                    setTimeout(() => {
+                        entry.target.classList.add('active');
+                    }, index * 150); 
                 }
-            }
-        }
-        window.addEventListener("scroll", reveal);
-        window.addEventListener("load", reveal);
-        // Initial call to catch hero section
-        reveal();
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
+
+        
