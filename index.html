@@ -20,7 +20,6 @@
             color: var(--primary); 
             margin: 0; padding: 0;
             line-height: 1.6;
-            overflow-x: hidden;
         }
 
         /* Continuous High-End Animation */
@@ -28,7 +27,6 @@
             opacity: 0;
             transform: translateY(50px) scale(0.97);
             transition: opacity 1.2s var(--ease), transform 1.2s var(--ease);
-            will-change: transform, opacity;
         }
 
         .reveal.active {
@@ -36,7 +34,7 @@
             transform: translateY(0) scale(1);
         }
 
-        /* Hero Section */
+        /* Hero Section - Fixed Header */
         .hero {
             height: 90vh;
             display: flex;
@@ -44,16 +42,15 @@
             justify-content: center;
             text-align: center;
             background: linear-gradient(rgba(27, 67, 50, 0.75), rgba(27, 67, 50, 0.75)), 
-                        url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1600&auto=format') center/cover no-repeat;
+                        url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1600&auto=format') center/cover no-repeat;
             color: #fff;
             padding: 20px;
         }
 
         .hero h1 { font-size: clamp(2rem, 8vw, 3rem); letter-spacing: 5px; text-transform: uppercase; margin: 0; font-weight: 800; }
-        .hero p { font-size: 1.1rem; max-width: 600px; margin: 25px auto; font-weight: 300; letter-spacing: 1px; opacity: 0.9; }
+        .hero p { font-size: 1.1rem; max-width: 600px; margin: 25px auto; font-weight: 300; letter-spacing: 1px; }
 
-        /* Main Container */
-        .container { width: 90%; max-width: 1100px; margin: auto; padding: 100px 0; }
+        .container { width: 90%; max-width: 1100px; margin: auto; padding: 80px 0; }
         .services-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 50px; }
 
         .card {
@@ -61,7 +58,6 @@
             border-radius: 30px;
             overflow: hidden;
             box-shadow: 0 20px 50px rgba(0,0,0,0.04);
-            border: 1px solid rgba(27, 67, 50, 0.05);
         }
 
         .card-img { 
@@ -69,28 +65,20 @@
             aspect-ratio: 1 / 1; 
             object-fit: cover; 
             display: block;
-            transition: transform 1s var(--ease);
         }
-        .card:hover .card-img { transform: scale(1.04); }
 
         .card-content { padding: 45px 35px; }
         .card-content h3 { 
             font-size: 1.8rem; 
             margin-bottom: 25px; 
-            font-weight: 700;
             border-bottom: 1.5px solid #f4f4f4; 
             padding-bottom: 20px;
-            letter-spacing: -0.5px;
         }
         .card-content ul { padding: 0; list-style: none; }
         .card-content li { margin-bottom: 15px; padding-left: 25px; position: relative; color: #3a3a3a; font-size: 1.05rem; }
         .card-content li::before { content: "→"; color: var(--accent); position: absolute; left: 0; font-weight: bold; }
 
-        /* Contact Section */
-        .footer { background: var(--primary); color: #fff; text-align: center; padding: 120px 20px; }
-        .footer h2 { font-size: 2.2rem; margin-bottom: 15px; letter-spacing: 1px; }
-        .footer p { opacity: 0.8; font-weight: 300; margin-bottom: 50px; }
-
+        .footer { background: var(--primary); color: #fff; text-align: center; padding: 100px 20px; }
         .btn-group { display: flex; flex-direction: column; gap: 20px; max-width: 380px; margin: auto; }
 
         .btn {
@@ -100,12 +88,10 @@
             text-transform: uppercase;
             font-weight: 700;
             font-size: 0.9rem;
-            letter-spacing: 2.5px;
+            letter-spacing: 2px;
             transition: all 0.4s var(--ease);
-            position: relative;
         }
 
-        /* Pulse Animations for All Buttons */
         .btn-call { background: var(--accent); color: #fff; animation: pulse-gold 3s infinite; }
         .btn-whatsapp { background: #25D366; color: #fff; animation: pulse-green 3s infinite 0.4s; }
         .btn-email { background: transparent; border: 1.5px solid rgba(255,255,255,0.3); color: #fff; animation: pulse-white 3s infinite 0.8s; }
@@ -117,7 +103,6 @@
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.2rem; }
             .container { padding: 60px 0; }
-            .card-content { padding: 35px 25px; }
         }
     </style>
 </head>
@@ -133,7 +118,7 @@
     <div class="container">
         <div class="services-wrapper">
             <div class="card reveal">
-                <img src="https://i.ibb.co/fN8SPrV/cupping.jpg" class="card-img" alt="Advanced Physiotherapy Treatment">
+                <img src="https://images.pexels.com/photos/6663463/pexels-photo-6663463.jpeg?auto=compress&cs=tinysrgb&w=800" class="card-img" alt="Physiotherapy Cupping">
                 <div class="card-content">
                     <h3>Physiotherapy & Rehab</h3>
                     <ul>
@@ -147,7 +132,7 @@
             </div>
 
             <div class="card reveal">
-                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format" class="card-img" alt="Elite Fitness Studio">
+                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format" class="card-img" alt="Elite Fitness">
                 <div class="card-content">
                     <h3>Elite Fitness Training</h3>
                     <ul>
@@ -160,7 +145,7 @@
             </div>
 
             <div class="card reveal">
-                <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=800&auto=format" class="card-img" alt="Clinical Nutrition Planning">
+                <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=800&auto=format" class="card-img" alt="Clinical Nutrition">
                 <div class="card-content">
                     <h3>Clinical Nutrition</h3>
                     <ul>
@@ -176,7 +161,6 @@
 
     <div class="footer reveal">
         <h2>Start Your Protocol</h2>
-        <p>Private clinical consultations for in-person or virtual care.</p>
         <div class="btn-group">
             <a href="tel:+917981010248" class="btn btn-call">Speak with Us</a>
             <a href="https://wa.me/917981010248" class="btn btn-whatsapp">Message on WhatsApp</a>
@@ -185,23 +169,17 @@
     </div>
 
     <script>
-        // Professional Reveal Script (Works both ways)
-        const revealElements = document.querySelectorAll('.reveal');
-        
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
                 } else {
-                    entry.target.classList.remove('active'); // Reset when scrolling up
+                    entry.target.classList.remove('active'); 
                 }
             });
-        }, { 
-            threshold: 0.1,
-            rootMargin: '0px 0px -40px 0px' 
-        });
+        }, { threshold: 0.1 });
 
-        revealElements.forEach(el => observer.observe(el));
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
