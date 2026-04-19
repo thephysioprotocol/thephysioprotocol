@@ -1,86 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Physio Protocol</title>
     <style>
-        :root { --primary: #1b4332; --accent: #f5a623; --cream: #fcfdfb; --ease: cubic-bezier(0.23, 1, 0.32, 1); }
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { font-family: -apple-system, sans-serif; background: var(--cream); color: var(--primary); margin: 0; line-height: 1.6; }
-        
-        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s var(--ease); }
-        .reveal.active { opacity: 1; transform: translateY(0); }
-
-        .hero {
-            height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center;
-            background: linear-gradient(rgba(27, 67, 50, 0.7), rgba(27, 67, 50, 0.7)), 
-            url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1200&auto=format') center/cover;
-            color: #fff; padding: 20px;
-        }
-
-        .container { width: 90%; max-width: 1100px; margin: auto; padding: 60px 0; }
-        .services-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
-        .card { background: #fff; border-radius: 25px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.05); }
-        .card-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
-        .card-content { padding: 30px; }
-        
-        .footer { background: var(--primary); color: #fff; text-align: center; padding: 80px 20px; }
-        .btn-group { display: flex; flex-direction: column; gap: 15px; max-width: 350px; margin: 30px auto; }
-        .btn { padding: 20px; border-radius: 50px; text-decoration: none; text-transform: uppercase; font-weight: 700; font-size: 0.8rem; letter-spacing: 2px; transition: 0.3s; }
-        .btn-call { background: var(--accent); color: #fff; }
-        .btn-whatsapp { background: #25D366; color: #fff; }
-        .btn-email { border: 1px solid rgba(255,255,255,0.4); color: #fff; }
+        body { font-family: sans-serif; margin: 0; background: #fcfdfb; color: #1b4332; text-align: center; }
+        .hero { background: #1b4332; color: white; padding: 60px 20px; }
+        .card { background: white; margin: 20px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
+        .btn { display: block; margin: 10px auto; padding: 20px; width: 80%; border-radius: 50px; text-decoration: none; font-weight: bold; text-transform: uppercase; }
+        .btn-call { background: #f5a623; color: white; }
+        .btn-wa { background: #25D366; color: white; }
     </style>
 </head>
 <body>
     <div class="hero">
-        <div>
-            <h1 style="letter-spacing:5px; text-transform:uppercase;">The Physio Protocol</h1>
-            <p>Bespoke Wellness & Elite Clinical Rehabilitation</p>
-        </div>
+        <h1>THE PHYSIO PROTOCOL</h1>
+        <p>Bespoke Wellness & Rehabilitation</p>
     </div>
-
-    <div class="container">
-        <div class="services-wrapper">
-            <div class="card reveal">
-                <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?q=80&w=800&auto=format" class="card-img" alt="Physio">
-                <div class="card-content">
-                    <h3>Physiotherapy & Rehab</h3>
-                    <ul style="list-style:none; padding:0;">
-                        <li>→ Post-Operative Rehabilitation</li>
-                        <li>→ Sports Injury Management</li>
-                        <li>→ Clinical Ultrasound & TENS</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="card reveal">
-                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format" class="card-img" alt="Fitness">
-                <div class="card-content">
-                    <h3>Elite Fitness</h3>
-                    <ul style="list-style:none; padding:0;">
-                        <li>→ Strength & Conditioning</li>
-                        <li>→ Functional Mobility</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+    <div class="card">
+        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800" alt="Physio">
+        <h2>Physiotherapy & Rehab</h2>
     </div>
-
-    <div class="footer reveal">
-        <h2>Start Your Protocol</h2>
-        <div class="btn-group">
-            <a href="tel:+917981010248" class="btn btn-call">Speak with Us</a>
-            <a href="https://wa.me/917981010248" class="btn btn-whatsapp">Message on WhatsApp</a>
-            <a href="mailto:thephysioprotocol@gmail.com?subject=Inquiry&body=Name:" class="btn btn-email">Inquiry via Email</a>
-        </div>
+    <div style="padding: 40px 20px; background: #1b4332;">
+        <a href="tel:+917981010248" class="btn btn-call">Speak with Us</a>
+        <a href="https://wa.me/917981010248" class="btn btn-wa">WhatsApp Us</a>
     </div>
-
-    <script>
-        const obs = new IntersectionObserver((es) => {
-            es.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); else e.target.classList.remove('active'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-    </script>
 </body>
 </html>
