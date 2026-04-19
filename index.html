@@ -9,24 +9,24 @@
             --primary: #1b4332;
             --accent: #f5a623;
             --cream: #fcfdfb;
-            --ease: cubic-bezier(0.16, 1, 0.3, 1);
+            --ease: cubic-bezier(0.23, 1, 0.32, 1);
         }
 
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
         body {
-            font-family: 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
             background-color: var(--cream); 
-            color: #2d2d2d; 
+            color: var(--primary); 
             margin: 0; padding: 0;
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Luxury Fade-In Animation */
+        /* Continuous High-End Animation */
         .reveal {
             opacity: 0;
-            transform: translateY(40px) scale(0.98);
+            transform: translateY(50px) scale(0.97);
             transition: opacity 1.2s var(--ease), transform 1.2s var(--ease);
             will-change: transform, opacity;
         }
@@ -36,153 +36,88 @@
             transform: translateY(0) scale(1);
         }
 
-        /* Hero - Solid & Premium */
+        /* Hero Section */
         .hero {
-            height: 100vh;
+            height: 90vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: linear-gradient(rgba(27, 67, 50, 0.82), rgba(27, 67, 50, 0.82)), 
+            background: linear-gradient(rgba(27, 67, 50, 0.75), rgba(27, 67, 50, 0.75)), 
                         url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1600&auto=format') center/cover no-repeat;
             color: #fff;
             padding: 20px;
         }
 
-        .hero-content h1 {
-            font-size: clamp(2.5rem, 8vw, 4rem);
-            letter-spacing: 6px;
-            text-transform: uppercase;
-            margin: 0;
-            animation: heroFade 1.5s var(--ease);
-        }
+        .hero h1 { font-size: clamp(2rem, 8vw, 3rem); letter-spacing: 5px; text-transform: uppercase; margin: 0; font-weight: 800; }
+        .hero p { font-size: 1.1rem; max-width: 600px; margin: 25px auto; font-weight: 300; letter-spacing: 1px; opacity: 0.9; }
 
-        .hero-content p {
-            font-size: 1.15rem;
-            max-width: 700px;
-            margin: 25px auto;
-            font-weight: 300;
-            letter-spacing: 1px;
-            animation: heroFade 1.5s var(--ease) 0.3s backwards;
-        }
+        /* Main Container */
+        .container { width: 90%; max-width: 1100px; margin: auto; padding: 100px 0; }
+        .services-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 50px; }
 
-        @keyframes heroFade {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .container { width: 92%; max-width: 1200px; margin: auto; padding: 100px 0; }
-
-        .services-wrapper {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 40px;
-        }
-
-        .service-card {
+        .card {
             background: #fff;
-            border-radius: 24px;
+            border-radius: 30px;
             overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.04);
-            transition: transform 0.4s ease;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.04);
+            border: 1px solid rgba(27, 67, 50, 0.05);
         }
 
-        /* Fixed Aspect Ratio - No Jumping */
-        .img-box {
-            width: 100%;
-            aspect-ratio: 1 / 1;
-            background: #f0f0f0;
-            overflow: hidden;
+        .card-img { 
+            width: 100%; 
+            aspect-ratio: 1 / 1; 
+            object-fit: cover; 
+            display: block;
+            transition: transform 1s var(--ease);
         }
+        .card:hover .card-img { transform: scale(1.04); }
 
-        .collage-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            grid-template-rows: 1fr 1fr;
-            gap: 2px;
-            height: 100%;
-        }
-
-        .collage-grid img, .card-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 1s ease;
-        }
-
-        .service-card:hover .collage-grid img, 
-        .service-card:hover .card-img { transform: scale(1.05); }
-
-        .card-content { padding: 40px 30px; }
+        .card-content { padding: 45px 35px; }
         .card-content h3 { 
-            font-size: 1.7rem; 
-            color: var(--primary); 
-            margin-bottom: 20px; 
-            font-weight: 600;
-            border-bottom: 1px solid #f2f2f2;
-            padding-bottom: 15px;
+            font-size: 1.8rem; 
+            margin-bottom: 25px; 
+            font-weight: 700;
+            border-bottom: 1.5px solid #f4f4f4; 
+            padding-bottom: 20px;
+            letter-spacing: -0.5px;
         }
-
         .card-content ul { padding: 0; list-style: none; }
-        .card-content li { 
-            margin-bottom: 12px; 
-            padding-left: 20px; 
-            position: relative; 
-            color: #4a4a4a;
-        }
-        .card-content li::before { 
-            content: "•"; 
-            color: var(--accent); 
-            position: absolute; left: 0; 
-            font-weight: bold;
-        }
+        .card-content li { margin-bottom: 15px; padding-left: 25px; position: relative; color: #3a3a3a; font-size: 1.05rem; }
+        .card-content li::before { content: "→"; color: var(--accent); position: absolute; left: 0; font-weight: bold; }
 
         /* Contact Section */
-        .footer { 
-            background: var(--primary); 
-            color: #fff; 
-            text-align: center; 
-            padding: 120px 20px;
-        }
+        .footer { background: var(--primary); color: #fff; text-align: center; padding: 120px 20px; }
+        .footer h2 { font-size: 2.2rem; margin-bottom: 15px; letter-spacing: 1px; }
+        .footer p { opacity: 0.8; font-weight: 300; margin-bottom: 50px; }
 
-        .btn-group { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 15px; 
-            max-width: 360px; 
-            margin: 40px auto 0; 
-        }
+        .btn-group { display: flex; flex-direction: column; gap: 20px; max-width: 380px; margin: auto; }
 
         .btn {
-            padding: 22px;
-            border-radius: 60px;
+            padding: 24px;
+            border-radius: 100px;
             text-decoration: none;
             text-transform: uppercase;
             font-weight: 700;
-            font-size: 0.85rem;
-            letter-spacing: 2px;
-            transition: all 0.3s var(--ease);
+            font-size: 0.9rem;
+            letter-spacing: 2.5px;
+            transition: all 0.4s var(--ease);
+            position: relative;
         }
 
-        .btn-call {
-            background: var(--accent);
-            color: #fff;
-            box-shadow: 0 10px 30px rgba(245, 166, 35, 0.3);
-            animation: pulse-ring 3s infinite;
-        }
+        /* Pulse Animations for All Buttons */
+        .btn-call { background: var(--accent); color: #fff; animation: pulse-gold 3s infinite; }
+        .btn-whatsapp { background: #25D366; color: #fff; animation: pulse-green 3s infinite 0.4s; }
+        .btn-email { background: transparent; border: 1.5px solid rgba(255,255,255,0.3); color: #fff; animation: pulse-white 3s infinite 0.8s; }
 
-        .btn-whatsapp { background: #25D366; color: #fff; }
-        .btn-email { background: transparent; border: 1px solid rgba(255,255,255,0.4); color: #fff; }
-
-        @keyframes pulse-ring {
-            0% { box-shadow: 0 0 0 0 rgba(245, 166, 35, 0.6); }
-            70% { box-shadow: 0 0 0 15px rgba(245, 166, 35, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(245, 166, 35, 0); }
-        }
+        @keyframes pulse-gold { 0% { box-shadow: 0 0 0 0 rgba(245, 166, 35, 0.6); } 70% { box-shadow: 0 0 0 20px rgba(245, 166, 35, 0); } 100% { box-shadow: 0 0 0 0 rgba(245, 166, 35, 0); } }
+        @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); } 70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
+        @keyframes pulse-white { 0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.2); } 70% { box-shadow: 0 0 0 20px rgba(255, 255, 255, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); } }
 
         @media (max-width: 768px) {
-            .hero-content h1 { font-size: 2.1rem; }
+            .hero h1 { font-size: 2.2rem; }
             .container { padding: 60px 0; }
+            .card-content { padding: 35px 25px; }
         }
     </style>
 </head>
@@ -191,21 +126,14 @@
     <section class="hero">
         <div class="hero-content">
             <h1>The Physio Protocol</h1>
-            <p>Elite professional services designed around your lifestyle. Exclusive in-person sessions and integrated virtual care for your peak potential.</p>
+            <p>Bespoke Wellness & Elite Clinical Rehabilitation</p>
         </div>
     </section>
 
     <div class="container">
         <div class="services-wrapper">
-            <div class="service-card reveal">
-                <div class="img-box">
-                    <div class="collage-grid">
-                        <img src="https://images.unsplash.com/photo-1579126038823-93663a832367?auto=format&fit=crop&w=500&q=80" alt="Clinical Ultrasound">
-                        <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=500&q=80" alt="TENS Electrotherapy">
-                        <img src="https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?auto=format&fit=crop&w=500&q=80" alt="Kinesio Taping">
-                        <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?auto=format&fit=crop&w=500&q=80" alt="Dry Needling">
-                    </div>
-                </div>
+            <div class="card reveal">
+                <img src="https://i.ibb.co/fN8SPrV/cupping.jpg" class="card-img" alt="Advanced Physiotherapy Treatment">
                 <div class="card-content">
                     <h3>Physiotherapy & Rehab</h3>
                     <ul>
@@ -214,39 +142,32 @@
                         <li>Clinical Ultrasound & TENS</li>
                         <li>Dry Needling & Cupping</li>
                         <li>Kinesio Taping Support</li>
-                        <li>Virtual Specialist Consultations</li>
                     </ul>
                 </div>
             </div>
 
-            <div class="service-card reveal">
-                <div class="img-box">
-                    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800" class="card-img" alt="Fitness Training">
-                </div>
+            <div class="card reveal">
+                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format" class="card-img" alt="Elite Fitness Studio">
                 <div class="card-content">
                     <h3>Elite Fitness Training</h3>
                     <ul>
                         <li>Strength & Conditioning</li>
                         <li>Functional Mobility</li>
-                        <li>Hypertrophy & Muscle Building</li>
                         <li>Animal Flow & Yoga</li>
                         <li>Personalized Online Coaching</li>
                     </ul>
                 </div>
             </div>
 
-            <div class="service-card reveal">
-                <div class="img-box">
-                    <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&w=800" class="card-img" alt="Clinical Nutrition">
-                </div>
+            <div class="card reveal">
+                <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=800&auto=format" class="card-img" alt="Clinical Nutrition Planning">
                 <div class="card-content">
                     <h3>Clinical Nutrition</h3>
                     <ul>
                         <li>Performance & Sports Nutrition</li>
                         <li>Hormonal & Metabolic Support</li>
-                        <li>Anti-Inflammatory Protocols</li>
                         <li>Gut Health Optimization</li>
-                        <li>Global Virtual Meal Planning</li>
+                        <li>Virtual Meal Planning</li>
                     </ul>
                 </div>
             </div>
@@ -255,31 +176,32 @@
 
     <div class="footer reveal">
         <h2>Start Your Protocol</h2>
-        <p>Contact our team for a private consultation regarding our premium in-person or virtual services.</p>
+        <p>Private clinical consultations for in-person or virtual care.</p>
         <div class="btn-group">
             <a href="tel:+917981010248" class="btn btn-call">Speak with Us</a>
             <a href="https://wa.me/917981010248" class="btn btn-whatsapp">Message on WhatsApp</a>
-            <a href="mailto:thephysioprotocol@gmail.com?subject=New%20Inquiry&body=Name:%0APhone:%0AService%20Interested%20in:%0AGoals:" class="btn btn-email">Inquiry via Email</a>
+            <a href="mailto:thephysioprotocol@gmail.com?subject=Detailed%20Clinical%20Inquiry&body=FULL%20NAME:%0AAGE%20/%20GENDER:%0APHONE%20NUMBER:%0A%0APRIMARY%20CONCERN%20/%20PAIN%20AREA:%0ADURATION%20OF%20ISSUE:%0A%0APREFERRED%20MODE:%20(In-person%20/%20Virtual)%0AANY%20EXISTING%20REPORTS%20/%20SCANS?:" class="btn btn-email">Inquiry via Email</a>
         </div>
     </div>
 
     <script>
-        // Elite Staggered Reveal Logic
-        const observerOptions = { threshold: 0.1 };
+        // Professional Reveal Script (Works both ways)
+        const revealElements = document.querySelectorAll('.reveal');
+        
         const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
+            entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Staggering the start time for each card
-                    setTimeout(() => {
-                        entry.target.classList.add('active');
-                    }, index * 150); 
+                    entry.target.classList.add('active');
+                } else {
+                    entry.target.classList.remove('active'); // Reset when scrolling up
                 }
             });
-        }, observerOptions);
+        }, { 
+            threshold: 0.1,
+            rootMargin: '0px 0px -40px 0px' 
+        });
 
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        revealElements.forEach(el => observer.observe(el));
     </script>
 </body>
 </html>
-
-        
