@@ -5,154 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>The Physio Protocol</title>
     <style>
-        :root {
-            --primary: #1b4332;
-            --accent: #f5a623;
-            --cream: #fcfdfb;
-            --ease: cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
+        :root { --primary: #1b4332; --accent: #f5a623; --cream: #fcfdfb; --ease: cubic-bezier(0.23, 1, 0.32, 1); }
         * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: -apple-system, sans-serif; background: var(--cream); color: var(--primary); margin: 0; line-height: 1.6; }
         
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
-            background-color: var(--cream); 
-            color: var(--primary); 
-            margin: 0; padding: 0;
-            line-height: 1.6;
-        }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1s var(--ease); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
-        /* Continuous High-End Animation */
-        .reveal {
-            opacity: 0;
-            transform: translateY(50px) scale(0.97);
-            transition: opacity 1.2s var(--ease), transform 1.2s var(--ease);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-
-        /* Hero Section - Fixed Header */
         .hero {
-            height: 90vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: linear-gradient(rgba(27, 67, 50, 0.75), rgba(27, 67, 50, 0.75)), 
-                        url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1600&auto=format') center/cover no-repeat;
-            color: #fff;
-            padding: 20px;
+            height: 80vh; display: flex; align-items: center; justify-content: center; text-align: center;
+            background: linear-gradient(rgba(27, 67, 50, 0.7), rgba(27, 67, 50, 0.7)), 
+            url('https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1200&auto=format') center/cover;
+            color: #fff; padding: 20px;
         }
 
-        .hero h1 { font-size: clamp(2rem, 8vw, 3rem); letter-spacing: 5px; text-transform: uppercase; margin: 0; font-weight: 800; }
-        .hero p { font-size: 1.1rem; max-width: 600px; margin: 25px auto; font-weight: 300; letter-spacing: 1px; }
-
-        .container { width: 90%; max-width: 1100px; margin: auto; padding: 80px 0; }
-        .services-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 50px; }
-
-        .card {
-            background: #fff;
-            border-radius: 30px;
-            overflow: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.04);
-        }
-
-        .card-img { 
-            width: 100%; 
-            aspect-ratio: 1 / 1; 
-            object-fit: cover; 
-            display: block;
-        }
-
-        .card-content { padding: 45px 35px; }
-        .card-content h3 { 
-            font-size: 1.8rem; 
-            margin-bottom: 25px; 
-            border-bottom: 1.5px solid #f4f4f4; 
-            padding-bottom: 20px;
-        }
-        .card-content ul { padding: 0; list-style: none; }
-        .card-content li { margin-bottom: 15px; padding-left: 25px; position: relative; color: #3a3a3a; font-size: 1.05rem; }
-        .card-content li::before { content: "→"; color: var(--accent); position: absolute; left: 0; font-weight: bold; }
-
-        .footer { background: var(--primary); color: #fff; text-align: center; padding: 100px 20px; }
-        .btn-group { display: flex; flex-direction: column; gap: 20px; max-width: 380px; margin: auto; }
-
-        .btn {
-            padding: 24px;
-            border-radius: 100px;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-weight: 700;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
-            transition: all 0.4s var(--ease);
-        }
-
-        .btn-call { background: var(--accent); color: #fff; animation: pulse-gold 3s infinite; }
-        .btn-whatsapp { background: #25D366; color: #fff; animation: pulse-green 3s infinite 0.4s; }
-        .btn-email { background: transparent; border: 1.5px solid rgba(255,255,255,0.3); color: #fff; animation: pulse-white 3s infinite 0.8s; }
-
-        @keyframes pulse-gold { 0% { box-shadow: 0 0 0 0 rgba(245, 166, 35, 0.6); } 70% { box-shadow: 0 0 0 20px rgba(245, 166, 35, 0); } 100% { box-shadow: 0 0 0 0 rgba(245, 166, 35, 0); } }
-        @keyframes pulse-green { 0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); } 70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); } 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); } }
-        @keyframes pulse-white { 0% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.2); } 70% { box-shadow: 0 0 0 20px rgba(255, 255, 255, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 255, 255, 0); } }
-
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .container { padding: 60px 0; }
-        }
+        .container { width: 90%; max-width: 1100px; margin: auto; padding: 60px 0; }
+        .services-wrapper { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; }
+        .card { background: #fff; border-radius: 25px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.05); }
+        .card-img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
+        .card-content { padding: 30px; }
+        
+        .footer { background: var(--primary); color: #fff; text-align: center; padding: 80px 20px; }
+        .btn-group { display: flex; flex-direction: column; gap: 15px; max-width: 350px; margin: 30px auto; }
+        .btn { padding: 20px; border-radius: 50px; text-decoration: none; text-transform: uppercase; font-weight: 700; font-size: 0.8rem; letter-spacing: 2px; transition: 0.3s; }
+        .btn-call { background: var(--accent); color: #fff; }
+        .btn-whatsapp { background: #25D366; color: #fff; }
+        .btn-email { border: 1px solid rgba(255,255,255,0.4); color: #fff; }
     </style>
 </head>
 <body>
-
-    <section class="hero">
-        <div class="hero-content">
-            <h1>The Physio Protocol</h1>
+    <div class="hero">
+        <div>
+            <h1 style="letter-spacing:5px; text-transform:uppercase;">The Physio Protocol</h1>
             <p>Bespoke Wellness & Elite Clinical Rehabilitation</p>
         </div>
-    </section>
+    </div>
 
     <div class="container">
         <div class="services-wrapper">
             <div class="card reveal">
-                <img src="https://images.pexels.com/photos/6663463/pexels-photo-6663463.jpeg?auto=compress&cs=tinysrgb&w=800" class="card-img" alt="Physiotherapy Cupping">
+                <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?q=80&w=800&auto=format" class="card-img" alt="Physio">
                 <div class="card-content">
                     <h3>Physiotherapy & Rehab</h3>
-                    <ul>
-                        <li>Post-Operative Rehabilitation</li>
-                        <li>Sports Injury Management</li>
-                        <li>Clinical Ultrasound & TENS</li>
-                        <li>Dry Needling & Cupping</li>
-                        <li>Kinesio Taping Support</li>
+                    <ul style="list-style:none; padding:0;">
+                        <li>→ Post-Operative Rehabilitation</li>
+                        <li>→ Sports Injury Management</li>
+                        <li>→ Clinical Ultrasound & TENS</li>
                     </ul>
                 </div>
             </div>
-
             <div class="card reveal">
-                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format" class="card-img" alt="Elite Fitness">
+                <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=800&auto=format" class="card-img" alt="Fitness">
                 <div class="card-content">
-                    <h3>Elite Fitness Training</h3>
-                    <ul>
-                        <li>Strength & Conditioning</li>
-                        <li>Functional Mobility</li>
-                        <li>Animal Flow & Yoga</li>
-                        <li>Personalized Online Coaching</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="card reveal">
-                <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=800&auto=format" class="card-img" alt="Clinical Nutrition">
-                <div class="card-content">
-                    <h3>Clinical Nutrition</h3>
-                    <ul>
-                        <li>Performance & Sports Nutrition</li>
-                        <li>Hormonal & Metabolic Support</li>
-                        <li>Gut Health Optimization</li>
-                        <li>Virtual Meal Planning</li>
+                    <h3>Elite Fitness</h3>
+                    <ul style="list-style:none; padding:0;">
+                        <li>→ Strength & Conditioning</li>
+                        <li>→ Functional Mobility</li>
                     </ul>
                 </div>
             </div>
@@ -164,22 +72,15 @@
         <div class="btn-group">
             <a href="tel:+917981010248" class="btn btn-call">Speak with Us</a>
             <a href="https://wa.me/917981010248" class="btn btn-whatsapp">Message on WhatsApp</a>
-            <a href="mailto:thephysioprotocol@gmail.com?subject=Detailed%20Clinical%20Inquiry&body=FULL%20NAME:%0AAGE%20/%20GENDER:%0APHONE%20NUMBER:%0A%0APRIMARY%20CONCERN%20/%20PAIN%20AREA:%0ADURATION%20OF%20ISSUE:%0A%0APREFERRED%20MODE:%20(In-person%20/%20Virtual)%0AANY%20EXISTING%20REPORTS%20/%20SCANS?:" class="btn btn-email">Inquiry via Email</a>
+            <a href="mailto:thephysioprotocol@gmail.com?subject=Inquiry&body=Name:" class="btn btn-email">Inquiry via Email</a>
         </div>
     </div>
 
     <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                } else {
-                    entry.target.classList.remove('active'); 
-                }
-            });
+        const obs = new IntersectionObserver((es) => {
+            es.forEach(e => { if (e.isIntersecting) e.target.classList.add('active'); else e.target.classList.remove('active'); });
         }, { threshold: 0.1 });
-
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
     </script>
 </body>
 </html>
