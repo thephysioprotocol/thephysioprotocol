@@ -1,31 +1,260 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Physio Protocol</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>The Physio Protocol | Elite Clinical Wellness</title>
     <style>
-        body { font-family: sans-serif; margin: 0; background: #fcfdfb; color: #1b4332; text-align: center; }
-        .hero { background: #1b4332; color: white; padding: 60px 20px; }
-        .card { background: white; margin: 20px; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        .card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; }
-        .btn { display: block; margin: 10px auto; padding: 20px; width: 80%; border-radius: 50px; text-decoration: none; font-weight: bold; text-transform: uppercase; }
-        .btn-call { background: #f5a623; color: white; }
-        .btn-wa { background: #25D366; color: white; }
+        :root {
+            --primary: #1b4332;
+            --accent: #f5a623;
+            --cream: #fcfdfb;
+            --text: #2d3436;
+            --white: #ffffff;
+            --ease: cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        * { box-sizing: border-box; -webkit-font-smoothing: antialiased; }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--cream);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(27, 67, 50, 0.75), rgba(27, 67, 50, 0.75)), 
+                        url('https://images.unsplash.com/photo-1597452485669-2c7bb5fef90d?q=80&w=1200&auto=format') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 8vw, 4rem);
+            letter-spacing: 6px;
+            margin: 0;
+            font-weight: 800;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 4vw, 1.5rem);
+            opacity: 0.9;
+            margin-top: 10px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+
+        /* Scroll Animation Utility */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s var(--ease);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: -60px auto 60px auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Cards Layout */
+        .card {
+            background: var(--white);
+            border-radius: 30px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        @media (min-width: 768px) {
+            .card { flex-direction: row; align-items: center; }
+            .card.reverse { flex-direction: row-reverse; }
+            .card-img, .card-content { width: 50%; }
+        }
+
+        .card-img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 40px;
+        }
+
+        .card-content h2 {
+            color: var(--primary);
+            font-size: 1.8rem;
+            margin-top: 0;
+            border-bottom: 3px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+        }
+
+        .card-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .card-content li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 0.95rem;
+            color: #555;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-content li::before {
+            content: "→";
+            color: var(--accent);
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        /* Sticky Footer Buttons */
+        .footer-cta {
+            background: var(--primary);
+            padding: 60px 20px;
+            text-align: center;
+            color: var(--white);
+        }
+
+        .btn-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 400px;
+            margin: 30px auto 0 auto;
+        }
+
+        .btn {
+            padding: 22px;
+            border-radius: 60px;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            transition: transform 0.3s var(--ease);
+            animation: pulse 3s infinite;
+        }
+
+        .btn:active { transform: scale(0.95); }
+
+        .btn-call { background: var(--accent); color: var(--white); }
+        .btn-wa { background: #25D366; color: var(--white); animation-delay: 0.5s; }
+        .btn-email { border: 2px solid rgba(255,255,255,0.3); color: var(--white); animation: none; }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(245, 166, 35, 0.4); }
+            70% { box-shadow: 0 0 0 20px rgba(245, 166, 35, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(245, 166, 35, 0); }
+        }
     </style>
 </head>
 <body>
+
     <div class="hero">
-        <h1>THE PHYSIO PROTOCOL</h1>
-        <p>Bespoke Wellness & Rehabilitation</p>
+        <h1 class="reveal">The Physio Protocol</h1>
+        <p class="reveal">Bespoke Wellness • Elite Clinical Care</p>
     </div>
-    <div class="card">
-        <img src="https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=800" alt="Physio">
-        <h2>Physiotherapy & Rehab</h2>
+
+    <div class="container">
+        <div class="card reveal">
+            <img src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=800" class="card-img" alt="Physiotherapy">
+            <div class="card-content">
+                <h2>Physiotherapy & Rehab</h2>
+                <ul>
+                    <li>Post-Operative Rehab (ACL, Spine, Joint)</li>
+                    <li>Sports Injury Management & Return-to-Play</li>
+                    <li>Clinical Ultrasound, TENS & EMS Therapy</li>
+                    <li>Advanced Dry Needling & Myofascial Cupping</li>
+                    <li>Kinesio Taping & Rigid Strapping</li>
+                    <li>Manual Therapy & Joint Mobilization</li>
+                    <li>Neurological Rehabilitation</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card reverse reveal">
+            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=800" class="card-img" alt="Fitness">
+            <div class="card-content">
+                <h2>Elite Fitness Training</h2>
+                <ul>
+                    <li>Sport-Specific Strength & Conditioning</li>
+                    <li>Functional Mobility & Postural Correction</li>
+                    <li>Animal Flow & Movement Artistry</li>
+                    <li>Hypertrophy & Fat Loss Programming</li>
+                    <li>Injury Prevention (Pre-hab) Workouts</li>
+                    <li>Yoga & Mindful Breathwork</li>
+                    <li>Elite Virtual Coaching (Global Access)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card reveal">
+            <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?q=80&w=800" class="card-img" alt="Nutrition">
+            <div class="card-content">
+                <h2>Clinical Nutrition</h2>
+                <ul>
+                    <li>Performance & Sports Nutrition Mapping</li>
+                    <li>Hormonal Balance & Metabolic Support</li>
+                    <li>Gut Health & Microbiome Optimization</li>
+                    <li>Anti-Inflammatory Diet Protocols</li>
+                    <li>Medical Weight Management</li>
+                    <li>DNA-Based Personalized Nutrition</li>
+                    <li>Bespoke Virtual Meal Planning</li>
+                </ul>
+            </div>
+        </div>
     </div>
-    <div style="padding: 40px 20px; background: #1b4332;">
-        <a href="tel:+917981010248" class="btn btn-call">Speak with Us</a>
-        <a href="https://wa.me/917981010248" class="btn btn-wa">WhatsApp Us</a>
+
+    <div class="footer-cta reveal">
+        <h2>Begin Your Protocol</h2>
+        <div class="btn-container">
+            <a href="tel:+917981010248" class="btn btn-call">Speak with Us</a>
+            <a href="https://wa.me/917981010248" class="btn btn-wa">WhatsApp Inquiry</a>
+            <a href="mailto:thephysioprotocol@gmail.com?subject=Detailed%20Clinical%20Inquiry&body=FULL%20NAME:%0AAGE%20/%20GENDER:%0APHONE%20NUMBER:%0A%0APRIMARY%20CONCERN%20/%20PAIN%20AREA:%0ADURATION%20OF%20ISSUE:%0A%0APREFERRED%20MODE:%20(In-person%20/%20Virtual)%0AANY%20EXISTING%20REPORTS%20/%20SCANS?:" class="btn btn-email">Email Intake Form</a>
+        </div>
+        <p style="margin-top:40px; font-size:0.7rem; opacity:0.6; letter-spacing:1px;">THE PHYSIO PROTOCOL © 2026</p>
     </div>
+
+    <script>
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                } else {
+                    entry.target.classList.remove('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
